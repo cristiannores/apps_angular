@@ -26,6 +26,11 @@ var HeroDetailComponent = (function () {
             .switchMap(function (params) { return _this.heroService.getHero(+params['id']); })
             .subscribe(function (hero) { return _this.hero = hero; });
     };
+    HeroDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.heroService.update(this.hero)
+            .then(function () { return _this.goBack(); });
+    };
     HeroDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
@@ -39,6 +44,7 @@ HeroDetailComponent = __decorate([
     core_1.Component({
         selector: 'hero-detail',
         templateUrl: './hero-detail.component.html',
+        styleUrls: ['./hero-detail.component.css']
     }),
     __metadata("design:paramtypes", [hero_service_1.HeroService,
         router_1.ActivatedRoute,
